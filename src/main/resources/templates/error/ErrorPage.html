@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>エラー</title>
+    </head>
+    <body>
+        <p th:text="${message}">エラーが発生しました。</p>
+        <a href="#" th:href="@{/datemanager}">戻る</a>
+    </body>
+</html>
