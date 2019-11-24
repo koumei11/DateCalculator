@@ -6,19 +6,19 @@
     <link href="/css/style.css" th:href="@{/css/style.css}" rel="stylesheet">
 </head>
 <body>
-  <h1 th:text="${title}"></h1>
-  <form method="post" th:action="${registForm.isNew} ? @{/datemanager/insert} : @{/datemanager/update}" th:object="${registForm}">
-      <label>日付ID</label>
+  <h1 th:text="${title}">登録</h1>
+  <form method="post" th:action="${registForm.isNew} ? @{/datecalc/insert} : @{/datecalc/update}" th:object="${registForm}">
+      <label id="date_id">日付ID</label>
       <input type="text" name="dateId" th:value="*{dateId}" placeholder="日付ID" class="input"><br>
       <div th:if="${#fields.hasErrors('dateId')}" th:errors="*{dateId}" class="err"></div>
-      <label>日付名</label>
+      <label id="date_name">日付名</label>
       <input type="text" name="dateType" th:value="*{dateType}" placeholder="日付名"><br>
       <div th:if="${#fields.hasErrors('dateType')}" th:errors="*{dateType}" class="err"></div>
-      <label>年</label>
+      <label id="years">年</label>
       <input type="number" name="year" th:value="*{year}"><br>
-      <label>月</label>
+      <label id="months">月</label>
       <input type="number" name="month" th:value="*{month}"><br>
-      <label>日</label>
+      <label id="days">日</label>
       <input type="number" name="day" th:value="*{day}"><br>
       <input th:if="${formulaId}" type="hidden" name="formulaId" th:value="${formulaId}">
       <input th:if="${typeId}" type="hidden" name="typeId" th:value="${typeId}">

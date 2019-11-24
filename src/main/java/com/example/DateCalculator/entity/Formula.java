@@ -1,10 +1,7 @@
-package com.example.DateManager.utilities;
+package com.example.DateCalculator.entity;
 
-import com.example.DateManager.form.DateInputForm;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.time.LocalDateTime;
 
 @Getter
 @Setter

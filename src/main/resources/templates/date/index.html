@@ -6,27 +6,27 @@
       <link href="/css/style.css" th:href="@{/css/style.css}" rel="stylesheet">
   </head>
   <body>
-    <h1>日付管理システム</h1>
-    <form method="post" th:action="@{/datemanager/result}" th:object="${inputForm}">
-        <label>日付を入力してください(必須)</label>
+    <h1 id="title">日付管理システム</h1>
+    <form method="post" th:action="@{/datecalc/result}" th:object="${inputForm}">
+        <label id="input_form1">日付を入力してください(必須)</label>
         <input type="text" name="date" th:value="*{date}" placeholder="yyyymmdd"><br>
         <div th:if="${#fields.hasErrors('date')}" th:errors="*{date}" class="err"></div>
-        <label>日付IDを選択してください</label>
+        <label id="input_form2">日付IDを選択してください</label>
         <select name="dateId">
             <option value="">選択してください</option>
             <option th:each="entry : ${map}" th:value="${entry.key}" th:selected="*{dateId} == ${entry.key}" th:text="${entry.key} + '(' + ${entry.value} + ')'"></option>
         </select><br>
         <input type="submit" value="計算実行">
-        <a href="" th:href="@{/datemanager/createFormula}" class="new_btn">新規登録</a>
+        <a href="" th:href="@{/datecalc/createFormula}" class="new_btn">新規登録</a>
     </form>
     <div th:if="${results}">
         <p class="result">計算結果一覧</p>
         <table>
             <tr>
-                <th>No</th>
-                <th>日付ID</th>
-                <th>日付名</th>
-                <th>計算結果</th>
+                <th id="num">No</th>
+                <th id="date_id">日付ID</th>
+                <th id="date_name">日付名</th>
+                <th id="calc_result">計算結果</th>
                 <th>計算式</th>
             </tr>
             <tr th:each="result, status : ${results}">
@@ -35,9 +35,9 @@
                 <td th:text="${result.type.dateType}"></td>
                 <td th:text="${result.resultDate}"></td>
                 <td th:text="${result.year} + '/' + ${result.month} + '/' + ${result.day}"></td>
-                <td><a type="button" th:href="@{/datemanager/updateFormula/{dateId}(dateId=${result.type.dateId})}" class="update_btn">更新</a></td>
+                <td><a type="button" th:href="@{/datecalc/updateFormula/{dateId}(dateId=${result.type.dateId})}" class="update_btn">更新</a></td>
                 <td>
-                    <form method="post" th:action="@{/datemanager/delete}" class="delete">
+                    <form method="post" th:action="@{/datecalc/delete}" class="delete">
                         <input type="hidden" name="dateId" th:value="${result.type.dateId}">
                         <input type="hidden" name="userInputDate" th:value="${userInputDate}">
                         <input type="hidden" name="userInputDateId" th:value="${userInputDateId}">

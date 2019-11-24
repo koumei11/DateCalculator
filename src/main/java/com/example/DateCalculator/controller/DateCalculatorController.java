@@ -1,11 +1,11 @@
-package com.example.DateManager.controller;
+package com.example.DateCalculator.controller;
 
-import com.example.DateManager.NotExecuteAnyMoreException;
-import com.example.DateManager.form.DateInputForm;
-import com.example.DateManager.form.RegistDateForm;
-import com.example.DateManager.service.DateManageService;
-import com.example.DateManager.utilities.Formula;
-import com.example.DateManager.utilities.Type;
+import com.example.DateCalculator.TaskNotFoundException;
+import com.example.DateCalculator.form.DateInputForm;
+import com.example.DateCalculator.form.RegistDateForm;
+import com.example.DateCalculator.service.DateCalculatorService;
+import com.example.DateCalculator.entity.Formula;
+import com.example.DateCalculator.entity.Type;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,14 +24,14 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/datemanager")
-public class DateManageController {
+@RequestMapping("/datecalc")
+public class DateCalculatorController {
 
-    private DateManageService service;
+    private DateCalculatorService service;
 
     // DateManageServiceをDIコンテナに格納
     @Autowired
-    public DateManageController(DateManageService service) {
+    public DateCalculatorController(DateCalculatorService service) {
         this.service = service;
     }
 
@@ -128,10 +128,10 @@ public class DateManageController {
         Formula formula = makeFormula(registForm, 0, 0);
         // 同じ日付IDが登録されないようにチェック
         if(service.getFormula(formula.getType().getDateId()) != null){
-            throw new NotExecuteAnyMoreException("すでに登録された日付IDです");
+            throw new TaskNotFoundException("すでに登録された日付IDです");
         }
         service.insertData(formula, formula.getType());
-        return "redirect:/datemanager";
+        return "redirect:/datecalc";
     }
 
     /**
@@ -187,11 +187,11 @@ public class DateManageController {
         Formula formula = makeFormula(registForm, formulaId, typeId);
         // 重複チェック
         if(service.getFormula(formula.getType().getDateId()) != null){
-            throw new NotExecuteAnyMoreException("すでに登録された日付IDです");
+            throw new TaskNotFoundException("すでに登録された日付IDです");
         }
         service.updateData(formula);
 
-        return "redirect:/datemanager";
+        return "redirect:/datecalc";
     }
 
     /**
@@ -368,7 +368,7 @@ public class DateManageController {
             return results;
 
         } catch (DateTimeException e){
-            throw new NotExecuteAnyMoreException("指定された日付は存在しません");
+            throw new TaskNotFoundException("指定された日付は存在しません");
         }
     }
 }

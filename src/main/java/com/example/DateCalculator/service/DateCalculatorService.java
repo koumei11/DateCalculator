@@ -1,12 +1,12 @@
-package com.example.DateManager.service;
+package com.example.DateCalculator.service;
 
-import com.example.DateManager.utilities.Formula;
-import com.example.DateManager.utilities.Type;
+import com.example.DateCalculator.entity.Formula;
+import com.example.DateCalculator.entity.Type;
 
 import java.util.List;
 import java.util.Map;
 
-public interface DateManageService {
+public interface DateCalculatorService {
     List<Formula> getAll();
     Formula getFormula(String dateId);
     void insertData(Formula formula, Type type);

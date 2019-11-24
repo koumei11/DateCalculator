@@ -1,6 +1,6 @@
-package com.example.DateManager.controller;
+package com.example.DateCalculator.controller;
 
-import com.example.DateManager.service.DateManageServiceImpl;
+import com.example.DateCalculator.service.DateCalculatorServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,10 +14,10 @@ import java.util.Map;
 @RequestMapping("/datemanagerapi")
 public class WebAPIController {
 
-    private DateManageServiceImpl service;
+    private DateCalculatorServiceImpl service;
 
     @Autowired
-    public WebAPIController(DateManageServiceImpl service){
+    public WebAPIController(DateCalculatorServiceImpl service){
         this.service = service;
     }
 

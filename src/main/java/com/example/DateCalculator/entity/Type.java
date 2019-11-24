@@ -1,4 +1,4 @@
-package com.example.DateManager.utilities;
+package com.example.DateCalculator.entity;
 
 
 import lombok.Getter;

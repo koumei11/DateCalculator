@@ -1,14 +1,14 @@
-package com.example.DateManager.mapper;
+package com.example.DateCalculator.mapper;
 
-import com.example.DateManager.utilities.Formula;
-import com.example.DateManager.utilities.Type;
+import com.example.DateCalculator.entity.Formula;
+import com.example.DateCalculator.entity.Type;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 import java.util.Map;
 
 @Mapper
-public interface DateManageMapper {
+public interface DateCalculatorMapper {
     List<Formula> getAll();
     Formula getFormula(String dateId);
     void insertFormula(Formula formula);
